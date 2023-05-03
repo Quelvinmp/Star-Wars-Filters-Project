@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const PlanetsContext = createContext();
@@ -6,6 +6,11 @@ export const PlanetsContext = createContext();
 function PlanetsProvider({ children }) {
   const [results, setResults] = useState([]);
   const [filterName, setFilterName] = useState([]);
+  const [filterColumn, setFilterColumn] = useState('population');
+  const [filterOperator, setFilterOperator] = useState('maior que');
+  const [filterNumber, setFilterNumber] = useState(0);
+  const [filters, setFilters] = useState([]);
+  const [initialResults, setInitialResults] = useState([]);
 
   useEffect(() => {
     async function fetchPlanets() {
@@ -16,16 +21,51 @@ function PlanetsProvider({ children }) {
         return planet;
       });
       setResults(planetList);
+      setInitialResults(planetList);
     }
     fetchPlanets();
   }, []);
+
+  const handleFilter = useCallback(() => {
+    if (filterOperator.includes('maior que')) {
+      const filtered = results
+        .filter((e) => Number(e[filterColumn]) > Number(filterNumber));
+      setResults(filtered);
+      setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+      return;
+    }
+    if (filterOperator.includes('menor que')) {
+      const filtered = results
+        .filter((e) => Number(e[filterColumn]) < Number(filterNumber));
+      setResults(filtered);
+      setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+      return;
+    }
+    const filtered = results
+      .filter((e) => Number(e[filterColumn]) === Number(filterNumber));
+    setResults(filtered);
+    setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+  }, [filterColumn, filterOperator, filterNumber, filters, results]);
 
   const values = useMemo(() => ({
     results,
     setResults,
     filterName,
     setFilterName,
-  }), [results, filterName, setFilterName]);
+    filterColumn,
+    setFilterColumn,
+    filterOperator,
+    setFilterOperator,
+    filterNumber,
+    setFilterNumber,
+    filters,
+    setFilters,
+    handleFilter,
+    initialResults,
+    setInitialResults,
+  }), [results, filterName, setFilterName, filterColumn,
+    setFilterColumn, filterOperator, setFilterOperator, filterNumber, setFilterNumber,
+    filters, setFilters, handleFilter, initialResults, setInitialResults]);
 
   return (
     <PlanetsContext.Provider value={ values }>
