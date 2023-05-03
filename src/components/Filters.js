@@ -57,10 +57,11 @@ function Filters() {
         </option> */}
         {filters.length > 0 ? options.map((option, index) => {
           if (!filters.some((filter) => filter.filterColumn === option)) {
+            setFilterColumn(option);
             return (
               <option key={ index }>{option}</option>
             );
-          }
+          } return null;
         }) : options.map((option, index) => (
           <option key={ index }>{option}</option>
         )) }
