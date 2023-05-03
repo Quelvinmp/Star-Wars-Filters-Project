@@ -5,7 +5,9 @@ function Filters() {
   const { filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator,
     filterNumber, setFilterNumber, handleFilter,
-    filters, deleteFilter, deleteAllFilters } = useContext(PlanetsContext);
+    filters, deleteFilter, deleteAllFilters,
+    sortOption, setSortOption, handleCheck,
+    radioValue, sortPlanets } = useContext(PlanetsContext);
 
   const options = ['population', 'rotation_period',
     'diameter', 'orbital_period', 'surface_water'];
@@ -91,6 +93,43 @@ function Filters() {
       >
         Remover Todos os Filtros
 
+      </button>
+
+      <select
+        data-testid="column-sort"
+        value={ sortOption }
+        onChange={ ({ target }) => setSortOption(target.value) }
+      >
+        <option>population</option>
+        <option>orbital_period</option>
+        <option>diameter</option>
+        <option>rotation_period</option>
+        <option>surface_water</option>
+      </select>
+
+      <div>
+        <input
+          type="radio"
+          value="ASC"
+          data-testid="column-sort-input-asc"
+          checked={ radioValue === 'ASC' }
+          onChange={ (e) => handleCheck(e.target.value) }
+        />
+        <input
+          type="radio"
+          value="DESC"
+          data-testid="column-sort-input-desc"
+          checked={ radioValue === 'DESC' }
+          onChange={ (e) => handleCheck(e.target.value) }
+        />
+      </div>
+
+      <button
+        type="button"
+        data-testid="column-sort-button"
+        onClick={ () => sortPlanets() }
+      >
+        Ordenar
       </button>
     </form>
   );

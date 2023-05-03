@@ -27,7 +27,7 @@ function Table() {
         {results.length > 0 && results.filter((e) => e.name.includes(filterName))
           .map((e, index) => (
             <tr key={ index }>
-              <td>{e.name}</td>
+              <td data-testid="planet-name">{e.name}</td>
               <td>{e.rotation_period}</td>
               <td>{e.orbital_period}</td>
               <td>{e.diameter}</td>

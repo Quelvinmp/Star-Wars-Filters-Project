@@ -11,6 +11,8 @@ function PlanetsProvider({ children }) {
   const [filterNumber, setFilterNumber] = useState(0);
   const [filters, setFilters] = useState([]);
   const [initialResults, setInitialResults] = useState([]);
+  const [sortOption, setSortOption] = useState('population');
+  const [radioValue, setRadioValue] = useState('');
 
   useEffect(() => {
     async function fetchPlanets() {
@@ -25,6 +27,28 @@ function PlanetsProvider({ children }) {
     }
     fetchPlanets();
   }, []);
+
+  const sortPlanets = useCallback(() => {
+    if (radioValue === 'ASC') {
+      const unknown = results.filter((e) => e[sortOption] === 'unknown');
+      const notUnknown = results.filter((e) => e[sortOption] !== 'unknown');
+      const sortedArray = notUnknown
+        .sort((a, b) => Number(a[sortOption]) - Number(b[sortOption]));
+      setResults([...sortedArray, ...unknown]);
+      return;
+    }
+    if (radioValue === 'DESC') {
+      const unknown = results.filter((e) => e[sortOption] === 'unknown');
+      const notUnknown = results.filter((e) => e[sortOption] !== 'unknown');
+      const sortedArray = notUnknown
+        .sort((a, b) => Number(b[sortOption]) - Number(a[sortOption]));
+      setResults([...sortedArray, ...unknown]);
+    }
+  }, [radioValue, results, sortOption]);
+
+  const handleCheck = useCallback((e) => {
+    setRadioValue(e);
+  }, [setRadioValue]);
 
   const handleFilter = useCallback(() => {
     if (filterOperator.includes('maior que')) {
@@ -100,10 +124,17 @@ function PlanetsProvider({ children }) {
     setInitialResults,
     deleteFilter,
     deleteAllFilters,
+    sortOption,
+    setSortOption,
+    handleCheck,
+    radioValue,
+    setRadioValue,
+    sortPlanets,
   }), [results, filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator, filterNumber, setFilterNumber,
     filters, setFilters, handleFilter, initialResults,
-    setInitialResults, deleteFilter, deleteAllFilters]);
+    setInitialResults, deleteFilter, deleteAllFilters, sortOption,
+    setSortOption, handleCheck, radioValue, setRadioValue, sortPlanets]);
 
   return (
     <PlanetsContext.Provider value={ values }>
