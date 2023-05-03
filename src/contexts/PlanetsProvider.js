@@ -47,50 +47,40 @@ function PlanetsProvider({ children }) {
     setFilters([...filters, { filterColumn, filterOperator, filterNumber }]);
   }, [filterColumn, filterOperator, filterNumber, filters, results]);
 
-  // const createFilter = useCallback(() => setFilters(
-  //   [...filters, { filterColumn, filterOperator, filterNumber }],
-  // ), [filterColumn, filterOperator, filterNumber, filters]);
+  const applyFilters = useCallback((item) => {
+    if (item.filterOperator.includes('maior que')) {
+      const filtered = initialResults
+        .filter((e) => Number(e[item.filterColumn]) > Number(item.filterNumber));
+      setResults(filtered);
+      return;
+    }
+    if (item.filterOperator.includes('menor que')) {
+      const filtered = initialResults
+        .filter((e) => Number(e[item.filterColumn]) < Number(item.filterNumber));
+      setResults(filtered);
+      return;
+    }
+    const filtered = initialResults
+      .filter((e) => Number(e[item.filterColumn]) === Number(item.filterNumber));
+    setResults(filtered);
+  }, [initialResults]);
 
-  // const applyFilters = useCallback(() => {
-  //   filters.forEach((filter) => {
-  //     if (filter.filterOperator.includes('maior que')) {
-  //       const filtered = results
-  //         .filter((e) => Number(e[filter.filterColumn]) > Number(filter.filterNumber));
-  //       setResults(filtered);
-  //       return;
-  //     }
-  //     if (filter.filterOperator.includes('menor que')) {
-  //       const filtered = results
-  //         .filter((e) => Number(e[filter.filterColumn]) < Number(filter.filterNumber));
-  //       setResults(filtered);
-  //       return;
-  //     }
-  //     const filtered = results
-  //       .filter((e) => Number(e[filter.filterColumn]) === Number(filter.filterNumber));
-  //     setResults(filtered);
-  //   });
-  // }, [filters, results]);
+  const deleteFilter = useCallback((filter) => {
+    setResults(initialResults);
+    const newFilters = filters.filter((item) => {
+      if (filter.filterColumn !== item.filterColumn) {
+        applyFilters(item);
+        return item;
+      }
+      return null;
+    });
+    setFilters(newFilters);
+  }, [applyFilters, filters, initialResults]);
 
-  // const values = useMemo(() => ({
-  //   results,
-  //   setResults,
-  //   filterName,
-  //   setFilterName,
-  //   filterColumn,
-  //   setFilterColumn,
-  //   filterOperator,
-  //   setFilterOperator,
-  //   filterNumber,
-  //   setFilterNumber,
-  //   filters,
-  //   setFilters,
-  //   createFilter,
-  //   initialResults,
-  //   applyFilters,
-  //   setInitialResults,
-  // }), [results, filterName, setFilterName, filterColumn,
-  //   setFilterColumn, filterOperator, setFilterOperator, filterNumber, setFilterNumber,
-  //   filters, setFilters, createFilter, initialResults, setInitialResults, applyFilters]);
+  const deleteAllFilters = useCallback(() => {
+    setFilters([]);
+    setResults(initialResults);
+  }, [setFilters, setResults, initialResults]);
 
   const values = useMemo(() => ({
     results,
@@ -108,9 +98,12 @@ function PlanetsProvider({ children }) {
     handleFilter,
     initialResults,
     setInitialResults,
+    deleteFilter,
+    deleteAllFilters,
   }), [results, filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator, filterNumber, setFilterNumber,
-    filters, setFilters, handleFilter, initialResults, setInitialResults]);
+    filters, setFilters, handleFilter, initialResults,
+    setInitialResults, deleteFilter, deleteAllFilters]);
 
   return (
     <PlanetsContext.Provider value={ values }>

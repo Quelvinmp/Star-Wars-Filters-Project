@@ -2,15 +2,19 @@ import { useContext } from 'react';
 import { PlanetsContext } from '../contexts/PlanetsProvider';
 
 function Filters() {
-  // const { filterName, setFilterName, filterColumn,
-  //   setFilterColumn, filterOperator, setFilterOperator,
-  //   filterNumber, setFilterNumber,
-  //   applyFilters, createFilter } = useContext(PlanetsContext);
   const { filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator,
-    filterNumber, setFilterNumber, handleFilter, filters } = useContext(PlanetsContext);
+    filterNumber, setFilterNumber, handleFilter,
+    filters, deleteFilter, deleteAllFilters } = useContext(PlanetsContext);
 
-  const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+  const options = ['population', 'rotation_period',
+    'diameter', 'orbital_period', 'surface_water'];
+
+  const getNewOptions = () => filters.length > 0 && options.filter((option) => {
+    if (!filters.some((filter) => filter.filterColumn === option)) return option;
+    return null;
+  });
+  const newOptions = getNewOptions();
 
   return (
     <form>
@@ -26,42 +30,11 @@ function Filters() {
         onChange={ ({ target }) => setFilterColumn(target.value) }
         data-testid="column-filter"
       >
-        {/* <option
-          disabled={ filters
-            .some((filter) => filter.filterColumn === 'population') }
-        >
-          population
-        </option>
-        <option
-          disabled={ filters
-            .some((filter) => filter.filterColumn === 'orbital_period') }
-        >
-          orbital_period
-        </option>
-        <option
-          disabled={ filters
-            .some((filter) => filter.filterColumn === 'diameter') }
-        >
-          diameter
-        </option>
-        <option
-          disabled={ filters
-            .some((filter) => filter.filterColumn === 'rotation_period') }
-        >
-          rotation_period
-        </option>
-        <option
-          disabled={ filters.some((filter) => filter.surface_water) }
-        >
-          surface_water
-        </option> */}
-        {filters.length > 0 ? options.map((option, index) => {
-          if (!filters.some((filter) => filter.filterColumn === option)) {
-            setFilterColumn(option);
-            return (
-              <option key={ index }>{option}</option>
-            );
-          } return null;
+        {filters.length > 0 ? newOptions.map((option, index) => {
+          if (index === 0) setFilterColumn(option);
+          return (
+            <option key={ index }>{option}</option>
+          );
         }) : options.map((option, index) => (
           <option key={ index }>{option}</option>
         )) }
@@ -90,6 +63,34 @@ function Filters() {
         onClick={ () => handleFilter() }
       >
         Filtrar
+      </button>
+
+      <div>
+        { filters.length > 0 && filters
+          .map((filter, index) => (
+            <div data-testid="filter" key={ index }>
+              <p>
+                {`${filter.filterColumn} ${filter.filterOperator} ${filter.filterNumber}`}
+              </p>
+              <button
+                type="button"
+                onClick={ () => {
+                  deleteFilter(filter);
+                } }
+              >
+                Apagar
+              </button>
+            </div>
+          ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={ deleteAllFilters }
+        data-testid="button-remove-filters"
+      >
+        Remover Todos os Filtros
+
       </button>
     </form>
   );
