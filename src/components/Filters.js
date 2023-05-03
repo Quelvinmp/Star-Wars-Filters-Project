@@ -8,7 +8,9 @@ function Filters() {
   //   applyFilters, createFilter } = useContext(PlanetsContext);
   const { filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator,
-    filterNumber, setFilterNumber, handleFilter } = useContext(PlanetsContext);
+    filterNumber, setFilterNumber, handleFilter, filters } = useContext(PlanetsContext);
+
+  const options = ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
 
   return (
     <form>
@@ -24,11 +26,44 @@ function Filters() {
         onChange={ ({ target }) => setFilterColumn(target.value) }
         data-testid="column-filter"
       >
-        <option>population</option>
-        <option>orbital_period</option>
-        <option>diameter</option>
-        <option>rotation_period</option>
-        <option>surface_water</option>
+        {/* <option
+          disabled={ filters
+            .some((filter) => filter.filterColumn === 'population') }
+        >
+          population
+        </option>
+        <option
+          disabled={ filters
+            .some((filter) => filter.filterColumn === 'orbital_period') }
+        >
+          orbital_period
+        </option>
+        <option
+          disabled={ filters
+            .some((filter) => filter.filterColumn === 'diameter') }
+        >
+          diameter
+        </option>
+        <option
+          disabled={ filters
+            .some((filter) => filter.filterColumn === 'rotation_period') }
+        >
+          rotation_period
+        </option>
+        <option
+          disabled={ filters.some((filter) => filter.surface_water) }
+        >
+          surface_water
+        </option> */}
+        {filters.length > 0 ? options.map((option, index) => {
+          if (!filters.some((filter) => filter.filterColumn === option)) {
+            return (
+              <option key={ index }>{option}</option>
+            );
+          }
+        }) : options.map((option, index) => (
+          <option key={ index }>{option}</option>
+        )) }
       </select>
 
       <select
@@ -51,10 +86,6 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        // onClick={ () => {
-        //   createFilter();
-        //   applyFilters();
-        // } }
         onClick={ () => handleFilter() }
       >
         Filtrar
