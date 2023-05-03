@@ -31,21 +31,66 @@ function PlanetsProvider({ children }) {
       const filtered = results
         .filter((e) => Number(e[filterColumn]) > Number(filterNumber));
       setResults(filtered);
-      setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+      setFilters([...filters, { filterColumn, filterOperator, filterNumber }]);
       return;
     }
     if (filterOperator.includes('menor que')) {
       const filtered = results
         .filter((e) => Number(e[filterColumn]) < Number(filterNumber));
       setResults(filtered);
-      setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+      setFilters([...filters, { filterColumn, filterOperator, filterNumber }]);
       return;
     }
     const filtered = results
       .filter((e) => Number(e[filterColumn]) === Number(filterNumber));
     setResults(filtered);
-    setFilters(...filters, { filterColumn, filterOperator, filterNumber });
+    setFilters([...filters, { filterColumn, filterOperator, filterNumber }]);
   }, [filterColumn, filterOperator, filterNumber, filters, results]);
+
+  // const createFilter = useCallback(() => setFilters(
+  //   [...filters, { filterColumn, filterOperator, filterNumber }],
+  // ), [filterColumn, filterOperator, filterNumber, filters]);
+
+  // const applyFilters = useCallback(() => {
+  //   filters.forEach((filter) => {
+  //     if (filter.filterOperator.includes('maior que')) {
+  //       const filtered = results
+  //         .filter((e) => Number(e[filter.filterColumn]) > Number(filter.filterNumber));
+  //       setResults(filtered);
+  //       return;
+  //     }
+  //     if (filter.filterOperator.includes('menor que')) {
+  //       const filtered = results
+  //         .filter((e) => Number(e[filter.filterColumn]) < Number(filter.filterNumber));
+  //       setResults(filtered);
+  //       return;
+  //     }
+  //     const filtered = results
+  //       .filter((e) => Number(e[filter.filterColumn]) === Number(filter.filterNumber));
+  //     setResults(filtered);
+  //   });
+  // }, [filters, results]);
+
+  // const values = useMemo(() => ({
+  //   results,
+  //   setResults,
+  //   filterName,
+  //   setFilterName,
+  //   filterColumn,
+  //   setFilterColumn,
+  //   filterOperator,
+  //   setFilterOperator,
+  //   filterNumber,
+  //   setFilterNumber,
+  //   filters,
+  //   setFilters,
+  //   createFilter,
+  //   initialResults,
+  //   applyFilters,
+  //   setInitialResults,
+  // }), [results, filterName, setFilterName, filterColumn,
+  //   setFilterColumn, filterOperator, setFilterOperator, filterNumber, setFilterNumber,
+  //   filters, setFilters, createFilter, initialResults, setInitialResults, applyFilters]);
 
   const values = useMemo(() => ({
     results,

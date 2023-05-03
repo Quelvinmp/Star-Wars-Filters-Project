@@ -2,6 +2,10 @@ import { useContext } from 'react';
 import { PlanetsContext } from '../contexts/PlanetsProvider';
 
 function Filters() {
+  // const { filterName, setFilterName, filterColumn,
+  //   setFilterColumn, filterOperator, setFilterOperator,
+  //   filterNumber, setFilterNumber,
+  //   applyFilters, createFilter } = useContext(PlanetsContext);
   const { filterName, setFilterName, filterColumn,
     setFilterColumn, filterOperator, setFilterOperator,
     filterNumber, setFilterNumber, handleFilter } = useContext(PlanetsContext);
@@ -47,7 +51,11 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ handleFilter }
+        // onClick={ () => {
+        //   createFilter();
+        //   applyFilters();
+        // } }
+        onClick={ () => handleFilter() }
       >
         Filtrar
       </button>
