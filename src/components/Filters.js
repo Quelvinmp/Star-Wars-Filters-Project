@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { PlanetsContext } from '../contexts/PlanetsProvider';
 
 function Filters() {
@@ -8,6 +8,7 @@ function Filters() {
     filters, deleteFilter, deleteAllFilters,
     sortOption, setSortOption, handleCheck,
     radioValue, sortPlanets } = useContext(PlanetsContext);
+  const [newOptions, setNewOptions] = useState([]);
 
   const options = ['population', 'rotation_period',
     'diameter', 'orbital_period', 'surface_water'];
@@ -16,7 +17,13 @@ function Filters() {
     if (!filters.some((filter) => filter.filterColumn === option)) return option;
     return null;
   });
-  const newOptions = getNewOptions();
+
+  useEffect(() => {
+    if (filters.length > 0) {
+      setNewOptions(getNewOptions());
+      setFilterColumn(getNewOptions()[0]);
+    }
+  }, [filters]);
 
   return (
     <form>
@@ -32,12 +39,9 @@ function Filters() {
         onChange={ ({ target }) => setFilterColumn(target.value) }
         data-testid="column-filter"
       >
-        {filters.length > 0 ? newOptions.map((option, index) => {
-          if (index === 0) setFilterColumn(option);
-          return (
-            <option key={ index }>{option}</option>
-          );
-        }) : options.map((option, index) => (
+        {filters.length > 0 ? newOptions.map((option, index) => (
+          <option key={ index }>{option}</option>
+        )) : options.map((option, index) => (
           <option key={ index }>{option}</option>
         )) }
       </select>
@@ -62,7 +66,7 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => handleFilter() }
+        onClick={ handleFilter }
       >
         Filtrar
       </button>
@@ -76,6 +80,7 @@ function Filters() {
               </p>
               <button
                 type="button"
+                data-testid="delete-filter"
                 onClick={ () => {
                   deleteFilter(filter);
                 } }
@@ -127,7 +132,7 @@ function Filters() {
       <button
         type="button"
         data-testid="column-sort-button"
-        onClick={ () => sortPlanets() }
+        onClick={ sortPlanets }
       >
         Ordenar
       </button>

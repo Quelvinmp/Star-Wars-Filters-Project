@@ -22,8 +22,12 @@ function PlanetsProvider({ children }) {
         delete planet.residents;
         return planet;
       });
+      const initialPlanetList = fullPlanetList.results.map((planet) => {
+        delete planet.residents;
+        return planet;
+      });
       setResults(planetList);
-      setInitialResults(planetList);
+      setInitialResults(initialPlanetList);
     }
     fetchPlanets();
   }, []);

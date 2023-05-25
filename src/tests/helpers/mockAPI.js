@@ -95,6 +95,146 @@ const mockAPI = {
       "edited": "2014-12-20T20:58:18.423000Z",
       "url": "https://swapi.dev/api/planets/4/"
     },
+    {
+      "name": "Dagobah",
+      "rotation_period": "23",
+      "orbital_period": "341",
+      "diameter": "8900",
+      "climate": "murky",
+      "gravity": "N/A",
+      "terrain": "swamp, jungles",
+      "surface_water": "8",
+      "population": "unknown",
+      "residents": [],
+      "films": [
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "created": "2014-12-10T11:42:22.590000Z",
+      "edited": "2014-12-20T20:58:18.425000Z",
+      "url": "https://swapi.dev/api/planets/5/"
+    },
+    {
+      "name": "Bespin",
+      "rotation_period": "12",
+      "orbital_period": "5110",
+      "diameter": "118000",
+      "climate": "temperate",
+      "gravity": "1.5 (surface), 1 standard (Cloud City)",
+      "terrain": "gas giant",
+      "surface_water": "0",
+      "population": "6000000",
+      "residents": [
+        "https://swapi.dev/api/people/26/"
+      ],
+      "films": [
+        "https://swapi.dev/api/films/2/"
+      ],
+      "created": "2014-12-10T11:43:55.240000Z",
+      "edited": "2014-12-20T20:58:18.427000Z",
+      "url": "https://swapi.dev/api/planets/6/"
+    },
+    {
+      "name": "Endor",
+      "rotation_period": "18",
+      "orbital_period": "402",
+      "diameter": "4900",
+      "climate": "temperate",
+      "gravity": "0.85 standard",
+      "terrain": "forests, mountains, lakes",
+      "surface_water": "8",
+      "population": "30000000",
+      "residents": [
+        "https://swapi.dev/api/people/30/"
+      ],
+      "films": [
+        "https://swapi.dev/api/films/3/"
+      ],
+      "created": "2014-12-10T11:50:29.349000Z",
+      "edited": "2014-12-20T20:58:18.429000Z",
+      "url": "https://swapi.dev/api/planets/7/"
+    },
+    {
+      "name": "Naboo",
+      "rotation_period": "26",
+      "orbital_period": "312",
+      "diameter": "12120",
+      "climate": "temperate",
+      "gravity": "1 standard",
+      "terrain": "grassy hills, swamps, forests, mountains",
+      "surface_water": "12",
+      "population": "4500000000",
+      "residents": [
+        "https://swapi.dev/api/people/3/",
+        "https://swapi.dev/api/people/21/",
+        "https://swapi.dev/api/people/35/",
+        "https://swapi.dev/api/people/36/",
+        "https://swapi.dev/api/people/37/",
+        "https://swapi.dev/api/people/38/",
+        "https://swapi.dev/api/people/39/",
+        "https://swapi.dev/api/people/42/",
+        "https://swapi.dev/api/people/60/",
+        "https://swapi.dev/api/people/61/",
+        "https://swapi.dev/api/people/66/"
+      ],
+      "films": [
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "created": "2014-12-10T11:52:31.066000Z",
+      "edited": "2014-12-20T20:58:18.430000Z",
+      "url": "https://swapi.dev/api/planets/8/"
+    },
+    {
+      "name": "Coruscant",
+      "rotation_period": "24",
+      "orbital_period": "368",
+      "diameter": "12240",
+      "climate": "temperate",
+      "gravity": "1 standard",
+      "terrain": "cityscape, mountains",
+      "surface_water": "unknown",
+      "population": "1000000000000",
+      "residents": [
+        "https://swapi.dev/api/people/34/",
+        "https://swapi.dev/api/people/55/",
+        "https://swapi.dev/api/people/74/"
+      ],
+      "films": [
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "created": "2014-12-10T11:54:13.921000Z",
+      "edited": "2014-12-20T20:58:18.432000Z",
+      "url": "https://swapi.dev/api/planets/9/"
+    },
+    {
+      "name": "Kamino",
+      "rotation_period": "27",
+      "orbital_period": "463",
+      "diameter": "19720",
+      "climate": "temperate",
+      "gravity": "1 standard",
+      "terrain": "ocean",
+      "surface_water": "100",
+      "population": "1000000000",
+      "residents": [
+        "https://swapi.dev/api/people/22/",
+        "https://swapi.dev/api/people/72/",
+        "https://swapi.dev/api/people/73/"
+      ],
+      "films": [
+        "https://swapi.dev/api/films/5/"
+      ],
+      "created": "2014-12-10T12:45:06.577000Z",
+      "edited": "2014-12-20T20:58:18.434000Z",
+      "url": "https://swapi.dev/api/planets/10/"
+    }
   ]
 }
 
