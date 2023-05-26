@@ -6,6 +6,10 @@ body {
   background-image: url('./assets/fundo-star-wars.svg');
   background-repeat: no-repeat;
   background-size: cover;
+
+  @apply scrollbar-thumb-warning
+  scrollbar-track-neutral pb-3
+  scrollbar-thin scrollbar-thumb-rounded-xl 
 }
 
 .starwars-logo {

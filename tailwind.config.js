@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable quotes */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -9,5 +10,6 @@ module.exports = {
   },
   plugins: [
     require("daisyui"),
+    require('tailwind-scrollbar')({ nocompatible: true }),
   ],
 };

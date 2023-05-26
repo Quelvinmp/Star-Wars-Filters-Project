@@ -6,7 +6,11 @@ function Table() {
   const { results, filterName } = useContext(PlanetsContext);
 
   return (
-    <div className="overflow-x-auto pb-3">
+    <div
+      className="overflow-x-auto scrollbar-thumb-warning
+    scrollbar-track-neutral pb-3
+    scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-track-rounded-full"
+    >
       <table className="table table-compact table-zebra w-full">
         <thead>
           <tr>
