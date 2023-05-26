@@ -27,7 +27,7 @@ function Filters() {
 
   return (
     <form
-      className="p-4 text-white"
+      className="p-4 text-white flex flex-col"
     >
       <div
         className="sm:w-[600px] flex flex-col items-center space-y-12 w-full m-auto
@@ -35,14 +35,6 @@ function Filters() {
       >
 
         <div className="flex flex-col gap-4 w-full lg:w-1/3">
-          <input
-            className="input input-bordered w-full bg-neutral  self-center"
-            type="text"
-            placeholder="Planet Name"
-            value={ filterName }
-            onChange={ ({ target }) => setFilterName(target.value) }
-            data-testid="name-filter"
-          />
 
           <select
             className="select bg-neutral select-bordered w-full  self-center"
@@ -115,6 +107,16 @@ function Filters() {
           </div>
         )}
       </div>
+
+      <input
+        className="input input-bordered w-full bg-neutral mt-12 self-center
+        max-w-sm lg:self-start"
+        type="text"
+        placeholder="Planet Name"
+        value={ filterName }
+        onChange={ ({ target }) => setFilterName(target.value) }
+        data-testid="name-filter"
+      />
     </form>
   );
 }
