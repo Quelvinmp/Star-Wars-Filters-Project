@@ -73,10 +73,10 @@ function Filters() {
 
       <div>
         { filters.length > 0 && filters
-          .map((filter, index) => (
+          .map(({ filterColumn: c, filterOperator: o, filterNumber: n }, index) => (
             <div data-testid="filter" key={ index }>
               <p>
-                {`${filter.filterColumn} ${filter.filterOperator} ${filter.filterNumber}`}
+                {`${c} ${o} ${n}`}
               </p>
               <button
                 type="button"
