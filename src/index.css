@@ -1,13 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/fundo-star-wars.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @apply scrollbar-thumb-warning
+  scrollbar-track-neutral pb-3
+  scrollbar-thin scrollbar-thumb-rounded-xl 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.starwars-logo {
+  background-image: url('./assets/logo-star-wars.svg');
+
+  @apply sm:h-32;
+
+  @apply lg:h-48;
+}
+
+.starwars-grafismo {
+  background-image: url('./assets/grafismo-topo.svg');
+
+  @apply sm:h-[450px];
+
+  @apply lg:h-[670px];
 }
