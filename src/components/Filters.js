@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
 import { PlanetsContext } from '../contexts/PlanetsProvider';
 import Order from './FiltersComponents/Order';
