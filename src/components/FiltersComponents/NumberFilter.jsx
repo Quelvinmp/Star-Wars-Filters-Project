@@ -10,8 +10,8 @@ export default function NumberFilter() {
       <select
         className="bg-neutral select select-bordered w-1/2  text-white "
         value={ filterOperator }
-        onChange={ ({ target }) => setFilterOperator(target.value) }
         data-testid="comparison-filter"
+        onChange={ ({ target }) => setFilterOperator(target.value) }
       >
         <option>maior que</option>
         <option>menor que</option>
