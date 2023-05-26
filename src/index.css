@@ -4,12 +4,22 @@
 
 body {
   background-image: url('./assets/fundo-star-wars.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .starwars-logo {
   background-image: url('./assets/logo-star-wars.svg');
+
+  @apply sm:h-32;
+
+  @apply lg:h-48;
 }
 
 .starwars-grafismo {
   background-image: url('./assets/grafismo-topo.svg');
+
+  @apply sm:h-[450px];
+
+  @apply lg:h-[670px];
 }

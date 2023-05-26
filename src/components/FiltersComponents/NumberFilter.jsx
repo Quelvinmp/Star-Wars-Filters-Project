@@ -6,9 +6,9 @@ export default function NumberFilter() {
     filterNumber, setFilterNumber } = useContext(PlanetsContext);
 
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1 justify-center">
       <select
-        className="bg-neutral select select-bordered w-1/2  text-white max-w-xs"
+        className="bg-neutral select select-bordered w-1/2  text-white "
         value={ filterOperator }
         onChange={ ({ target }) => setFilterOperator(target.value) }
         data-testid="comparison-filter"
@@ -19,7 +19,7 @@ export default function NumberFilter() {
       </select>
 
       <input
-        className="bg-neutral input w-1/2 max-w-xs text-white"
+        className="bg-neutral input w-1/2 "
         type="number"
         value={ filterNumber }
         onChange={ ({ target }) => setFilterNumber(target.value) }

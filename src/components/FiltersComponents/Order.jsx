@@ -5,10 +5,10 @@ export default function Order() {
   const { sortOption, setSortOption, handleCheck,
     radioValue, sortPlanets } = useContext(PlanetsContext);
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex items-center flex-col gap-4 w-full">
 
       <select
-        className="bg-neutral select select-bordered w-full  text-white max-w-xs"
+        className="bg-neutral select select-bordered w-full  text-white"
         data-testid="column-sort"
         value={ sortOption }
         onChange={ ({ target }) => setSortOption(target.value) }
@@ -20,7 +20,11 @@ export default function Order() {
         <option>surface_water</option>
       </select>
 
-      <div className="flex justify-center gap-10 bg-neutral-900/80 p-2 rounded-xl">
+      <div
+        className="flex justify-center gap-10
+      bg-neutral-900/80 p-2 rounded-xl
+      w-full"
+      >
         <label htmlFor="asc" className="relative">
           <input
             className="radio radio-warning radio-xs absolute top-0.5 -left-5"

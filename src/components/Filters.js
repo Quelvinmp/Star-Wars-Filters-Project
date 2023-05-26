@@ -28,11 +28,11 @@ function Filters() {
     <form
       className="p-4 text-white"
     >
-      <div className="flex flex-col space-y-12">
+      <div className="flex flex-col items-center space-y-12 max-w-xl m-auto">
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
           <input
-            className="input input-bordered w-full max-w-xs bg-neutral text-white"
+            className="input input-bordered w-full bg-neutral  self-center"
             type="text"
             placeholder="Planet Name"
             value={ filterName }
@@ -41,7 +41,7 @@ function Filters() {
           />
 
           <select
-            className="select bg-neutral select-bordered w-full max-w-xs text-white"
+            className="select bg-neutral select-bordered w-full  self-center"
             value={ filterColumn }
             onChange={ ({ target }) => setFilterColumn(target.value) }
             data-testid="column-filter"
@@ -56,7 +56,7 @@ function Filters() {
           <NumberFilter />
 
           <button
-            className="btn btn-warning w-full"
+            className="btn btn-warning w-full self-center"
             type="button"
             data-testid="button-filter"
             onClick={ handleFilter }
