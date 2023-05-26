@@ -19,7 +19,7 @@ function App() {
       <div className="px-4">
         <div
           className="border border-white
-        rounded-xl -translate-y-3 sm:-translate-y-5 lg:-translate-y-7"
+        rounded-t-xl -translate-y-3 sm:-translate-y-5 lg:-translate-y-7"
         >
           <Filters />
           <Table />

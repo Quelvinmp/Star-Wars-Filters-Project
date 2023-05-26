@@ -5,7 +5,7 @@ export const PlanetsContext = createContext();
 
 function PlanetsProvider({ children }) {
   const [results, setResults] = useState([]);
-  const [filterName, setFilterName] = useState([]);
+  const [filterName, setFilterName] = useState('');
   const [filterColumn, setFilterColumn] = useState('population');
   const [filterOperator, setFilterOperator] = useState('maior que');
   const [filterNumber, setFilterNumber] = useState(0);

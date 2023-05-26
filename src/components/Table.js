@@ -8,8 +8,8 @@ function Table() {
   return (
     <div
       className="overflow-x-auto scrollbar-thumb-warning
-    scrollbar-track-neutral pb-3
-    scrollbar-thin scrollbar-thumb-rounded-xl scrollbar-track-rounded-full"
+    scrollbar-track-neutral
+    scrollbar-thin scrollbar-thumb-rounded-xl w-full"
     >
       <table className="table table-compact table-zebra w-full">
         <thead>
@@ -31,7 +31,8 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {results.length > 0 && results.filter((e) => e.name.includes(filterName))
+          {results.length > 0 && results
+            .filter((e) => e.name.toLowerCase().includes(filterName.toLowerCase()))
             .map((e, index) => (
               <tr key={ index }>
                 <td />
