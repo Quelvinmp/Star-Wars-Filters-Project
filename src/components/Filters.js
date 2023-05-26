@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { PlanetsContext } from '../contexts/PlanetsProvider';
+import Order from './FiltersComponents/Order';
+import NumberFilter from './FiltersComponents/NumberFilter';
 
 function Filters() {
   const { filterName, setFilterName, filterColumn,
-    setFilterColumn, filterOperator, setFilterOperator,
-    filterNumber, setFilterNumber, handleFilter,
-    filters, deleteFilter, deleteAllFilters,
-    sortOption, setSortOption, handleCheck,
-    radioValue, sortPlanets } = useContext(PlanetsContext);
+    setFilterColumn, handleFilter,
+    filters, deleteFilter, deleteAllFilters } = useContext(PlanetsContext);
   const [newOptions, setNewOptions] = useState([]);
 
   const options = ['population', 'rotation_period',
@@ -26,116 +25,90 @@ function Filters() {
   }, [filters]);
 
   return (
-    <form>
-      <input
-        type="text"
-        value={ filterName }
-        onChange={ ({ target }) => setFilterName(target.value) }
-        data-testid="name-filter"
-      />
+    <form
+      className="p-4 text-white"
+    >
+      <div className="flex flex-col space-y-12">
 
-      <select
-        value={ filterColumn }
-        onChange={ ({ target }) => setFilterColumn(target.value) }
-        data-testid="column-filter"
-      >
-        {filters.length > 0 ? newOptions.map((option, index) => (
-          <option key={ index }>{option}</option>
-        )) : options.map((option, index) => (
-          <option key={ index }>{option}</option>
-        )) }
-      </select>
+        <div className="flex flex-col gap-4">
+          <input
+            className="input input-bordered w-full max-w-xs bg-neutral text-white"
+            type="text"
+            placeholder="Planet Name"
+            value={ filterName }
+            onChange={ ({ target }) => setFilterName(target.value) }
+            data-testid="name-filter"
+          />
 
-      <select
-        value={ filterOperator }
-        onChange={ ({ target }) => setFilterOperator(target.value) }
-        data-testid="comparison-filter"
-      >
-        <option>maior que</option>
-        <option>menor que</option>
-        <option>igual a</option>
-      </select>
+          <select
+            className="select bg-neutral select-bordered w-full max-w-xs text-white"
+            value={ filterColumn }
+            onChange={ ({ target }) => setFilterColumn(target.value) }
+            data-testid="column-filter"
+          >
+            {filters.length > 0 ? newOptions.map((option, index) => (
+              <option key={ index }>{option}</option>
+            )) : options.map((option, index) => (
+              <option key={ index }>{option}</option>
+            )) }
+          </select>
 
-      <input
-        type="number"
-        value={ filterNumber }
-        onChange={ ({ target }) => setFilterNumber(target.value) }
-        data-testid="value-filter"
-      />
+          <NumberFilter />
 
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ handleFilter }
-      >
-        Filtrar
-      </button>
+          <button
+            className="btn btn-warning w-full"
+            type="button"
+            data-testid="button-filter"
+            onClick={ handleFilter }
+          >
+            Filtrar
+          </button>
+        </div>
 
-      <div>
-        { filters.length > 0 && filters
-          .map(({ filterColumn: c, filterOperator: o, filterNumber: n }, index) => (
-            <div data-testid="filter" key={ index }>
-              <p>
-                {`${c} ${o} ${n}`}
-              </p>
-              <button
-                type="button"
-                data-testid="delete-filter"
-                onClick={ () => {
-                  deleteFilter(filter);
-                } }
-              >
-                Apagar
-              </button>
+        <Order />
+
+        {filters.length > 0 && (
+          <div className="bg-neutral-900/80 p-2 rounded-xl flex flex-col h-fit">
+            <div>
+              { filters.length > 0 && filters
+                .map((filter, index) => {
+                  const { filterColumn: c, filterOperator: o, filterNumber: n } = filter;
+                  return (
+                    <div
+                      className="flex px-2 justify-between bg-neutral my-2 rounded-xl
+                  items-center"
+                      data-testid="filter"
+                      key={ index }
+                    >
+                      <p className="text-center">
+                        {`${c} ${o} ${n}`}
+                      </p>
+                      <button
+                        className="btn btn-link text-red-400"
+                        type="button"
+                        data-testid="delete-filter"
+                        onClick={ () => {
+                          deleteFilter(filter);
+                        } }
+                      >
+                        Apagar
+                      </button>
+                    </div>
+                  );
+                })}
             </div>
-          ))}
+
+            <button
+              className="w-3/4 p-0 btn btn-link text-red-400 self-center"
+              type="button"
+              onClick={ deleteAllFilters }
+              data-testid="button-remove-filters"
+            >
+              Remover Todos os Filtros
+            </button>
+          </div>
+        )}
       </div>
-
-      <button
-        type="button"
-        onClick={ deleteAllFilters }
-        data-testid="button-remove-filters"
-      >
-        Remover Todos os Filtros
-
-      </button>
-
-      <select
-        data-testid="column-sort"
-        value={ sortOption }
-        onChange={ ({ target }) => setSortOption(target.value) }
-      >
-        <option>population</option>
-        <option>orbital_period</option>
-        <option>diameter</option>
-        <option>rotation_period</option>
-        <option>surface_water</option>
-      </select>
-
-      <div>
-        <input
-          type="radio"
-          value="ASC"
-          data-testid="column-sort-input-asc"
-          checked={ radioValue === 'ASC' }
-          onChange={ (e) => handleCheck(e.target.value) }
-        />
-        <input
-          type="radio"
-          value="DESC"
-          data-testid="column-sort-input-desc"
-          checked={ radioValue === 'DESC' }
-          onChange={ (e) => handleCheck(e.target.value) }
-        />
-      </div>
-
-      <button
-        type="button"
-        data-testid="column-sort-button"
-        onClick={ sortPlanets }
-      >
-        Ordenar
-      </button>
     </form>
   );
 }

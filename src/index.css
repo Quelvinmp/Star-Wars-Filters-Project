@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-main
+  background-image: url('./assets/fundo-star-wars.svg');
+}
+
+.starwars-logo {
+  background-image: url('./assets/logo-star-wars.svg');
+}
+
+.starwars-grafismo {
+  background-image: url('./assets/grafismo-topo.svg');
 }
