@@ -5,7 +5,7 @@ export default function Order() {
   const { sortOption, setSortOption, handleCheck,
     radioValue, sortPlanets } = useContext(PlanetsContext);
   return (
-    <div className="flex items-center flex-col gap-4 w-full">
+    <div className="flex items-center flex-col gap-4 w-full lg:w-1/3 self-start">
 
       <select
         className="bg-neutral select select-bordered w-full  text-white"

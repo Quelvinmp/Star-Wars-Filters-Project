@@ -28,9 +28,12 @@ function Filters() {
     <form
       className="p-4 text-white"
     >
-      <div className="flex flex-col items-center space-y-12 max-w-xl m-auto">
+      <div
+        className="sm:w-[600px] flex flex-col items-center space-y-12 w-full m-auto
+      lg:flex-row lg:w-full lg:justify-around lg:gap-20 lg:space-y-0"
+      >
 
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full lg:w-1/3">
           <input
             className="input input-bordered w-full bg-neutral  self-center"
             type="text"
@@ -66,10 +69,12 @@ function Filters() {
         </div>
 
         <Order />
+      </div>
 
+      <div className="max-w-xl m-auto mt-12">
         {filters.length > 0 && (
-          <div className="bg-neutral-900/80 p-2 rounded-xl flex flex-col h-fit">
-            <div>
+          <div className="bg-neutral-900/80 p-2 rounded-xl flex flex-col h-fit w-full">
+            <div className="lg:grid grid-cols-2 gap-x-4">
               { filters.length > 0 && filters
                 .map((filter, index) => {
                   const { filterColumn: c, filterOperator: o, filterNumber: n } = filter;

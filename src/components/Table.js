@@ -7,7 +7,7 @@ function Table() {
 
   return (
     <div className="overflow-x-auto pb-3">
-      <table className="table table-compact w-full">
+      <table className="table table-compact table-zebra w-full">
         <thead>
           <tr>
             <th />
